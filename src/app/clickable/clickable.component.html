@@ -1,0 +1,2 @@
+<span *ngIf="!isButton" [ngClass]="{selected: selected}" (click)="clicked()">{{display}}</span>
+<button *ngIf="isButton" [ngClass]="{selected: selected}" (click)="clicked()">{{display}}</button>

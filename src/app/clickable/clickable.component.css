@@ -1,0 +1,28 @@
+button {
+	color: green;
+	background-color: black;
+	margin: 5px 5px 5px 5px;
+	padding: 10px 10px 10px 10px;
+	border-color: green;
+	border-radius: 2px;
+}
+
+button:active {
+	background-color: green;
+	color: black;
+}
+
+span {
+	color: green;
+}
+
+span:hover {
+	color: white;
+	cursor: pointer;
+}
+
+.selected {
+	color: white;
+	font-size: 1.5em;
+	font-weight: bold;
+}
