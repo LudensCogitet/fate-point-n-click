@@ -11,7 +11,7 @@
 			</span>
 		</div>
 		<div class="commands">
-			<app-clickable *ngFor="let keyword of keywords" [isButton]="true" [data]="{content: keyword}"></app-clickable>
+			<app-clickable *ngFor="let keyword of keywords" [isButton]="true" [data]="extractWordData(keyword, keywordAliases)"></app-clickable>
 		</div>
 	</div>
 </div>

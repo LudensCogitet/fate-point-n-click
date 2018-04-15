@@ -37,11 +37,11 @@ export class ClickableComponent implements OnInit {
 
 	public clicked() {
 		this.selected = !this.selected;
-
+		console.log("CONTENT",this.content);
 		if(this.selected) {
-			this.fateService.move(this.content);
+			this.fateService.move({display: this.display, content: this.content});
 		} else {
-			this.fateService.clearFromBuffer(this.content);
+			this.fateService.clearFromBuffer({display: this.display, content: this.content});
 		}
 	}
 }

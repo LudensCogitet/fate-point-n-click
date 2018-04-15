@@ -10,7 +10,7 @@
 	flex-direction: column;
 	background-color: black;
 	height: 100%;
-	width: 800px;
+	width: 411px;
 
 	padding: 10px 10px 10px 10px
 }
@@ -21,9 +21,10 @@
 }
 
 .commands {
-	border-top: 4px solid green;
+	border-top: 2px solid green;
 	padding-top: 10px;
 	text-align: center;
+	user-select: none;
 }
 
 .commands span {
