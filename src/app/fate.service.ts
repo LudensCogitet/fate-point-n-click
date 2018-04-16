@@ -28,7 +28,7 @@ export class FateService {
 		this.displayBuffer = this.displayBuffer.concat(command.display);
 		this.commandBuffer = this.commandBuffer.concat(command.content.split(' '));
 		if(this.commandBuffer.length > 1) {
-			let lastCommandDisplay = this.displayBuffer.join(' > ');
+			let lastCommandDisplay = this.displayBuffer.join(' ... ');
 			let result = fate.move(this.commandBuffer.join(' '));
 
 			result.lastCommandDisplay = lastCommandDisplay;

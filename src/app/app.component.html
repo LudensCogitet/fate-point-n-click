@@ -1,14 +1,11 @@
 <div class="container">
 	<div class="inner-container">
 		<div class="text" #text>
-			<span *ngFor="let paragraph of paragraphs">
-				<p>
-					<span *ngFor="let word of paragraph">
-						<app-clickable [data]="extractWordData(word)">
-					 						 </app-clickable>
-					</span>
-				<p>
-			</span>
+			<p *ngFor="let paragraph of paragraphs">
+				<app-clickable 	*ngFor="let word of paragraph"
+												[data]="extractWordData(word)">
+			 	</app-clickable>
+			<p>
 		</div>
 		<div class="commands">
 			<app-clickable *ngFor="let keyword of keywords" [isButton]="true" [data]="extractWordData(keyword, keywordAliases)"></app-clickable>
