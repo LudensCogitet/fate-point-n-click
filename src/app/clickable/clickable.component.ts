@@ -9,6 +9,8 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class ClickableComponent implements OnInit {
 	public selected: boolean = false;
+	public clickable: boolean;
+
 	@Input() data: any;
 
 	@Input() isButton: boolean = false;
@@ -21,13 +23,18 @@ export class ClickableComponent implements OnInit {
   constructor(private fateService: FateService) { }
 
   ngOnInit() {
+		if(this.data.content.slice(0, 2) === '>>') {
+			this.clickable = false;
+		} else {
+			this.clickable = true;
+		}
+
 		this.display = this.data.display || this.data.content;
 
 		this.content = this.data.content.replace(/[.,:]/g, '');
 
 		this.gameStateSub = this.fateService.$gameState.subscribe(gameState => {
 			this.selected = false;
-			console.log("hello");
 		});
 	}
 
@@ -36,8 +43,9 @@ export class ClickableComponent implements OnInit {
 	}
 
 	public clicked() {
+		if(!this.clickable) return;
+		
 		this.selected = !this.selected;
-		console.log("CONTENT",this.content);
 		if(this.selected) {
 			this.fateService.move({display: this.display, content: this.content});
 		} else {

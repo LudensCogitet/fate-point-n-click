@@ -38,14 +38,14 @@ export class AppComponent implements OnInit, AfterViewChecked {
 					this.paragraphs = [];
 					this.paragraphs.push(this.getAliases(gameState.currentLocation.description).split(' '));
 				} else {
-					this.paragraphs.push([`"${gameState.lastCommandDisplay}"`]);
+					this.paragraphs.push([`>> "${gameState.lastCommandDisplay}"`]);
 				}
 
 				gameState.response.split('<p>').forEach(paragraph => {
 					this.paragraphs.push(this.getAliases(paragraph).split(' '));
 				});
 			} else {
-				this.paragraphs.push([`"${gameState.lastCommandDisplay}"`]);
+				this.paragraphs.push([`>> "${gameState.lastCommandDisplay}"`]);
 			}
 		});
 

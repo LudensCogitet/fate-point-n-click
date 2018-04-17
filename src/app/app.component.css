@@ -1,16 +1,19 @@
 .container {
 	display: flex;
 	justify-content: center;
-
-	height: 90vh;
+	height: 100vh;
 }
 
 .inner-container {
 	display: flex;
 	flex-direction: column;
 	background-color: black;
-	height: 100%;
-	width: 411px;
+
+	height: 480px;
+	width: 380px;
+	margin: auto;
+
+	border: 2px solid green;
 
 	padding: 10px 10px 10px 10px
 }
