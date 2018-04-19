@@ -25,7 +25,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
 	ngOnInit() {
 		this.gameStateSub = this.fateService.$gameState.subscribe(gameState => {
 			if(!gameState) return;
-
+			console.log(gameState);
 			if(!this.keywords) {
 				this.getKeywords(gameState);
 			}
@@ -71,6 +71,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
 	}
 
 	private getAliases(text, storage = this.aliases) {
+		if(!text) return '';
 		let match = text.match(/{(.*)\|(.*)}/);
 
 		while(match) {
