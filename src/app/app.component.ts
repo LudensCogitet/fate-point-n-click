@@ -61,7 +61,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
 	}
 
 	public extractWordData(text, storage = this.aliases) {
-		let match = text.match(/{([0-9]+)}/);
+		let match = text.match(/\[([0-9]+?)\]/);
 
 		if(!match) {
 			return {content: text};
@@ -72,13 +72,16 @@ export class AppComponent implements OnInit, AfterViewChecked {
 
 	private getAliases(text, storage = this.aliases) {
 		if(!text) return '';
-		let match = text.match(/{(.*)\|(.*)}/);
+		let match = text.match(/({.*?\|.*?})/);
 
 		while(match) {
-			storage.push({display: match[1], content: match[2]});
-
-			text = text.replace(match[0], `\{${storage.length - 1}\}`);
-			match = text.match(/{(.*)\|(.*)}/);
+			let split = match[1].split('|');
+			let display = split[0].slice(1);
+			let content = split[1].slice(0, -1);
+			storage.push({display, content});
+			console.log(display, content);
+			text = text.replace(match[0], `[${storage.length - 1}]`);
+			match = text.match(/({.*?\|.*?})/);
 		}
 
 		return text;
