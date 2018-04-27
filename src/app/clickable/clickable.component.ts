@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs/Subscription';
 export class ClickableComponent implements OnInit {
 	public selected: boolean = false;
 	public clickable: boolean;
+	public isAliased: boolean;
 
 	@Input() data: any;
 
@@ -31,6 +32,9 @@ export class ClickableComponent implements OnInit {
 
 		this.display = this.data.display || this.data.content;
 
+		this.isAliased = this.display.startsWith('!!');
+		if(this.isAliased) this.display = this.display.slice(2);
+
 		this.content = this.data.content.replace(/[.,:]/g, '');
 
 		this.gameStateSub = this.fateService.$gameState.subscribe(gameState => {
@@ -44,7 +48,7 @@ export class ClickableComponent implements OnInit {
 
 	public clicked() {
 		if(!this.clickable) return;
-		
+
 		this.selected = !this.selected;
 		if(this.selected) {
 			this.fateService.move({display: this.display, content: this.content});

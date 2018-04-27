@@ -30,3 +30,7 @@ span {
 	color: white;
 	font-weight: bold;
 }
+
+.standOut {
+	text-decoration: underline;
+}
