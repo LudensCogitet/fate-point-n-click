@@ -64,10 +64,51 @@ export class AppComponent implements OnInit, AfterViewChecked {
 		let match = text.match(/\[([0-9]+?)\]/);
 
 		if(!match) {
-			return {content: text};
+			let foundWord = text.match(/\w+/);
+			if(!foundWord) return {content: text};
+
+			let data = <any>{content: foundWord[0]};
+			let edges = text.split(foundWord[0]);
+
+			if(!edges.length) return data;
+
+			if(edges.length === 1) {
+				if(text.indexOf(edges[0]) < text.indexOf(foundWord[0]))
+					data.before = edges[0];
+				else
+					data.after = edges[0];
+			}
+
+			if(edges.length === 2) {
+				data.before = edges[0];
+				data.after = edges[1];
+			}
+
+			return data;
 		}
 
-		return storage[+match[1]];
+		let stored = storage[+match[1]];
+		let data = <any>{
+			display: stored.display,
+			content: stored.content
+		};
+
+		let edges = text.split(match[0]);
+		if(!edges) return data;
+
+		if(edges.length === 1) {
+			if(text.indexOf(edges[0]) < text.indexOf(match[0]))
+				data.before = edges[0];
+			else
+				data.after = edges[0];
+		}
+
+		if(edges.length === 2) {
+			data.before = edges[0];
+			data.after = edges[1];
+		}
+
+		return data;
 	}
 
 	private getAliases(text, storage = this.aliases) {

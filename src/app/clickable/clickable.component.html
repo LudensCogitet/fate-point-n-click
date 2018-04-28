@@ -1,2 +1,4 @@
-<span *ngIf="!isButton" [ngClass]="{selected: selected, clickable: clickable, standOut: isAliased}" (click)="clicked()">{{display}}</span>
+<span *ngIf="!isButton">
+	{{data.before || ''}}<span [ngClass]="{selected: selected, clickable: clickable, standOut: isHighlighted}" (click)="clicked()">{{display}}</span>{{data.after || ''}}
+</span>
 <button *ngIf="isButton" [ngClass]="{selected: selected}" (click)="clicked()">{{display}}</button>

@@ -10,10 +10,9 @@ import { Subscription } from 'rxjs/Subscription';
 export class ClickableComponent implements OnInit {
 	public selected: boolean = false;
 	public clickable: boolean;
-	public isAliased: boolean;
+	public isHighlighted: boolean;
 
 	@Input() data: any;
-
 	@Input() isButton: boolean = false;
 
 	public display: string;
@@ -32,8 +31,8 @@ export class ClickableComponent implements OnInit {
 
 		this.display = this.data.display || this.data.content;
 
-		this.isAliased = this.display.startsWith('!!');
-		if(this.isAliased) this.display = this.display.slice(2);
+		this.isHighlighted = this.display.startsWith('!!');
+		if(this.isHighlighted) this.display = this.display.slice(2);
 
 		this.content = this.data.content.replace(/[.,:]/g, '');
 
