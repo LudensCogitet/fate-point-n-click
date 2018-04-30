@@ -32,6 +32,12 @@ export class AppComponent implements OnInit, AfterViewChecked {
 
 			this.lastRoom = this.currentRoom;
 			this.currentRoom = gameState.currentLocation.name;
+
+			if(gameState.clear) {
+				this.aliases = [];
+				this.paragraphs = [];
+			}
+
 			if(gameState.response) {
 				if(this.lastRoom !== this.currentRoom) {
 					this.aliases = [];
@@ -64,7 +70,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
 		let match = text.match(/\[([0-9]+?)\]/);
 
 		if(!match) {
-			let foundWord = text.match(/\w+/);
+			let foundWord = text.match(/[\s,\w]+/);
 			if(!foundWord) return {content: text};
 
 			let data = <any>{content: foundWord[0]};
