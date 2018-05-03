@@ -25,6 +25,7 @@ export class ClickableComponent implements OnInit {
   ngOnInit() {
 		if(this.data.content.slice(0, 2) === '>>') {
 			this.clickable = false;
+			console.log("HARGE", this.data.content);
 		} else {
 			this.clickable = true;
 		}

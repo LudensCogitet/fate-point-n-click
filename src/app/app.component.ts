@@ -67,6 +67,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
 	}
 
 	public extractWordData(text, storage = this.aliases) {
+		if(text.startsWith('>>')) return {content: text};
 		let match = text.match(/\[([0-9]+?)\]/);
 
 		if(!match) {
@@ -126,7 +127,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
 			let display = split[0].slice(1);
 			let content = split[1].slice(0, -1);
 			storage.push({display, content});
-			console.log(display, content);
+			
 			text = text.replace(match[0], `[${storage.length - 1}]`);
 			match = text.match(/({.*?\|.*?})/);
 		}
